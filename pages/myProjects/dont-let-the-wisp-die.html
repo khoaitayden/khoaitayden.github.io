@@ -3,18 +3,229 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dont let the wisp die — Nguyen Khoa</title>
+  <title>Don't Let the Wisp Die — Nguyen Khoa</title>
   <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
 </head>
 <body>
   <header>
-    <h1>Dont let the wisp die</h1>
+    <h1>Don't Let the Wisp Die</h1>
+    <p class="tagline">"Survive the darkness. Feed the light. Complete the fear"</p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
+    <!-- I. INTRODUCTION -->
     <section>
-      <p>Short description goes here.</p>
+      <h2>I. Introduction</h2>
+      <p>
+        <strong>Don't Let the Wisp Die</strong> is a survival horror game built in Unity. 
+        The player explores a dark forest, guided only by a fading companion Wisp. 
+        The goal is to retrieve four objects across sub-maps and restore them to the central Beacon.
+      </p>
+
+      <h3>Gameplay Features</h3>
+      <ul>
+        <li><strong>The Companion Wisp & Light Management:</strong> The Wisp follows the player, providing a dynamic blue light source whose energy decays over time. Players must locate <em>Tombs</em> to collect souls and restore energy, alongside a secondary directional flashlight.</li>
+        <li><strong>Exploration & Objectives:</strong> Centered around a Hub Beacon. Reaching Gateways teleports the player to additive sub-scenes to retrieve objective items, which must be physically carried back one by one.</li>
+        <li><strong>Mini-Games:</strong> Includes potato cutting at the cooking station, dish washing at the sink, and toilet fixing in the bathroom.</li>
+        <li><strong>Escalating Threat System:</strong> Every time an objective is completed and returned, a new type of monster is released. Dying respawns the player at the Beacon but removes one random tombstone; when tombstones run out, the game resets.</li>
+      </ul>
+
+      <h3>Scenes Overview</h3>
+      <table class="styled-table">
+        <tr><th>Scene</th><th>Description</th></tr>
+        <tr><td><strong>Core Hub</strong></td><td>Central world with portals to sub-scenes</td></tr>
+        <tr><td><strong>Main Map</strong></td><td>Over-world forest connecting all areas</td></tr>
+        <tr><td><strong>House Map</strong></td><td>Interior sub-map (kitchen, bathroom, dishes)</td></tr>
+        <tr><td><strong>School Map</strong></td><td>Upcoming</td></tr>
+        <tr><td><strong>Park Map</strong></td><td>Upcoming</td></tr>
+        <tr><td><strong>Sewer Map</strong></td><td>Upcoming</td></tr>
+      </table>
+
+      <h3>Controls</h3>
+      <table class="styled-table">
+        <tr><th>Key</th><th>Action</th></tr>
+        <tr><td><strong>W, A, S, D</strong></td><td>Movement</td></tr>
+        <tr><td><strong>Shift</strong></td><td>Sprint (Consumes Energy)</td></tr>
+        <tr><td><strong>Space</strong></td><td>Jump</td></tr>
+        <tr><td><strong>F</strong></td><td>Toggle Flashlight</td></tr>
+        <tr><td><strong>E</strong></td><td>Interact (Open Doors, Pick up Items)</td></tr>
+        <tr><td><strong>Mouse</strong></td><td>Aim Flashlight / Look</td></tr>
+      </table>
+
+      <p class="more" style="margin-top: 1.5rem;">
+        <a href="https://khoaitayden.itch.io/dont-let-wisp-die" target="_blank">📥 Download Don't Let the Wisp Die on Itch.io &rarr;</a>
+      </p>
+    </section>
+
+    <!-- II. TECHNICAL -->
+    <section>
+      <h2>II. Technical</h2>
+      <p>
+        Built using a modular ScriptableObject event-driven architecture and advanced AI in Unity 6.
+      </p>
+
+      <h3>1. Core Architecture & Movement</h3>
+      <p>
+        Uses decoupled ScriptableObject event channels and variable anchors to eliminate singletons and direct references, paired with a strategy pattern for flexible movement controllers.
+      </p>
+      
+      <!-- Video 1 -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/h8sHrXq7pqc" title="Testing 2.5D Movement" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h3 style="margin-top: 2rem;">2. AI & Threat Systems</h3>
+      <p>
+        Enemies use advanced AI: 
+        <strong>CrashKonijn GOAP</strong> drives complex monster planning and behaviors, while 
+        <strong>Unity Behavior Graphs</strong> handle tree climbing and ambush tactics. A custom trace system lets AI track player footprints and noise.
+      </p>
+
+      <!-- Video 2 -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/Jnl2l2JeHqY" title="Environment & GOAP AI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h3 style="margin-top: 2rem;">3. First Area & Dialogue System (OldHouseMap)</h3>
+      <p>
+        Interior sub-maps feature narrative integration via 
+        <strong>Yarn Spinner</strong> for dialogues and voice-overs, a 
+        <strong>Fluent Cutscene API</strong> for cinematic sequences, and a JSON-based save system.
+      </p>
+
+      <!-- Video 3 -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/nE5K8vbpkB8" title="First Area & Dialogue System" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h3 style="margin-top: 2rem;">Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity 6000.5.4f1 (Unity 6)</td></tr>
+        <tr><td><strong>Rendering</strong></td><td>URP 17.5, Post-processing 3.5, Cinemachine 3.1</td></tr>
+        <tr><td><strong>Input</strong></td><td>New Input System 1.19</td></tr>
+        <tr><td><strong>AI</strong></td><td>CrashKonijn GOAP 3.0.34 &amp; Unity Behavior 1.0.16</td></tr>
+        <tr><td><strong>Dialogue</strong></td><td>Yarn Spinner (Git)</td></tr>
+        <tr><td><strong>Architecture</strong></td><td>SO-Event-Driven / Strategy Pattern</td></tr>
+      </table>
+
+      <!-- Video 4 -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/e-z529VGGHA" title="Gameplay Showcase" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- III. ART -->
+    <section>
+      <h2>III. Art</h2>
+      <p>
+        Showcase of handmade assets, models, shaders, and audio design (created without AI assistance).
+      </p>
+
+      <h3>1. Dirty Monster</h3>
+      <div class="asset-grid-3">
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Model]</div>
+          <h4>3D Model</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Rig]</div>
+          <h4>Rigging</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Texture]</div>
+          <h4>Texture Map</h4>
+        </div>
+      </div>
+
+      <h3>2. Kidnap Monster</h3>
+      <div class="asset-grid-3">
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Model]</div>
+          <h4>3D Model</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Rig]</div>
+          <h4>Rigging</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Texture]</div>
+          <h4>Texture Map</h4>
+        </div>
+      </div>
+
+      <h3>3. Drunk Monster</h3>
+      <div class="asset-grid-3">
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Model]</div>
+          <h4>3D Model</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Rig]</div>
+          <h4>Rigging</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Texture]</div>
+        </div>
+      </div>
+
+      <h3>4. Eye Monster &amp; Custom Shader</h3>
+      <div style="max-width: 480px; margin: 1rem 0 1.5rem 0;">
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[PNG Preview]</div>
+          <h4>Eye Monster</h4>
+          <p>Rendered with custom outline Shader Graph in Unity URP</p>
+        </div>
+      </div>
+
+      <h3>5. The Beacon (Hub Object)</h3>
+      <div class="asset-grid-3">
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Model]</div>
+          <h4>3D Model</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Rig]</div>
+          <h4>Rigging</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Texture]</div>
+          <h4>Texture Map</h4>
+        </div>
+      </div>
+
+      <h3>6. Objective Art (5 Items)</h3>
+      <div class="asset-grid-5">
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Item 1]</div>
+          <h4>Objective 1</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Item 2]</div>
+          <h4>Objective 2</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Item 3]</div>
+          <h4>Objective 3</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Item 4]</div>
+          <h4>Objective 4</h4>
+        </div>
+        <div class="asset-box">
+          <div class="card-image" style="display:flex; align-items:center; justify-content:center; color:#64748b;">[Item 5]</div>
+          <h4>All</h4>
+        </div>
+      </div>
+
+      <p style="margin: 1.5rem 0 1rem 0; font-style: italic; color: #94a3b8;">...and many more unlisted props, environment materials, and UI assets.</p>
+
+      <h3>7. Audio Design</h3>
+      <p>
+        Atmospheric horror soundscapes and gameplay sound effects mixed and mastered using <strong>Audacity</strong>, featuring source audio edited from <strong>Pixabay</strong>.
+      </p>
     </section>
   </main>
 
