@@ -75,7 +75,7 @@ ul.myProjects {
   list-style: none;
   padding-left: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
@@ -92,7 +92,7 @@ ul.myProjects h3 {
 }
 
 a {
-  color: #a78bfa;
+  color: #ff0000;
   text-decoration: none;
 }
 

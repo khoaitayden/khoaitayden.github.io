@@ -3,3 +3,10 @@
   border: 1px solid #334155;
   padding: 2rem;
 }
+
+.card-image {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #1e293b;
+  margin: 1rem 0;
+}
