@@ -3,23 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>treximo — Nguyen Khoa</title>
+  <title>Treximo — Nguyen Khoa</title>
   <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
 </head>
 <body>
   <header>
-    <h1>treximo</h1>
+    <h1>Treximo</h1>
+    <p class="tagline">A loop-based tactical strategy game built for GMTK Game Jam 2025 (LOOP).</p>
+    <p class="tagline">
+      <a href="https://github.com/quochuybb/game_jam" target="_blank">GitHub Repo</a> | 
+      <a href="https://khoaitayden.itch.io/treximo" target="_blank">Itch.io</a>
+    </p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
+    <!-- I. INTRODUCTION -->
     <section>
-      <p>Short description goes here.</p>
+      <h2>I. Introduction</h2>
+      <p>
+        <strong>Treximo</strong> is a loop-based tactical strategy game developed for GMTK Game Jam 2025 under the theme "LOOP". 
+        Players manage inventory items, fight monsters, and survive iterative gameplay loops where positioning and item synergy dictate survival.
+      </p>
+
+      <h3>Gameplay Video</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/Q_iDqWY5pvs" title="Treximo Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- II. TECHNICAL & CODE STRUCTURE -->
+    <section>
+      <h2>II. Technical &amp; Code Structure</h2>
+      <p>
+        Built in Unity with a modular scriptable-object asset architecture, combat management, and dynamic difficulty scaling.
+      </p>
+
+      <h3>Code Architecture</h3>
+      <ul>
+        <li><strong>Gameplay &amp; Board:</strong> <code>PlayerController.cs</code>, <code>BoardManager.cs</code>, and <code>ItemManager.cs</code> handle player actions, item interactions, and grid positioning.</li>
+        <li><strong>Combat System:</strong> <code>CombatUI.cs</code>, <code>TestCode.cs</code>, and combat encounter state machines.</li>
+        <li><strong>ScriptableObject Data:</strong> Data-driven setup for Items (Axe, Blade, Dagger, Hammer, Shields, Potions) and Monsters (Bat, Ghost, Spider, Witch) with customizable difficulty scaling assets.</li>
+        <li><strong>Audio System:</strong> <code>SoundSFXManager.cs</code> managing combat sound effects, mixer states, and audio playback.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity (C# / Universal Render Pipeline)</td></tr>
+        <tr><td><strong>Architecture</strong></td><td>ScriptableObject-driven Items &amp; Monsters</td></tr>
+        <tr><td><strong>UI &amp; Animation</strong></td><td>DOTween, TextMeshPro, Aseprite Animations</td></tr>
+      </table>
+    </section>
+
+    <!-- III. ART, AUDIO & ASSETS -->
+    <section>
+      <h2>III. Art, Audio &amp; Assets</h2>
+      
+      <h3>Art Assets</h3>
+      <p>
+        Original sprite assets are based on <a href="https://www.kenney.nl/assets/tiny-town" target="_blank">Kenney Tiny Town</a> and <a href="https://www.kenney.nl/assets/tiny-dungeon" target="_blank">Kenney Tiny Dungeon</a>. 
+        Mr. White extensively edited and redrawn sprites specifically tailored for the game's art style.
+      </p>
+
+      <h3>Audio Design</h3>
+      <p>
+        <em>Sorry for not linking individual sound effect sources. All sound effects were sourced from <a href="https://pixabay.com/sound-effects" target="_blank">Pixabay Sound Effects</a>.</em>
+      </p>
+    </section>
+
+    <!-- IV. COLLABORATION & CREDITS -->
+    <section>
+      <h2>IV. Collaboration &amp; Credits</h2>
+      <p>
+        Developed by the Dev Team:
+      </p>
+      <ul>
+        <li><strong>Developer:</strong> <a href="https://github.com/quochuybb" target="_blank">quochuybb</a></li>
+        <li><strong>Developer &amp; Artist:</strong> <a href="https://github.com/White2908" target="_blank">White2908</a> (Mr. White)</li>
+      </ul>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Nguyen Khoa</p>
   </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalClose = document.getElementById("modalClose");
+
+    document.querySelectorAll(".card-image").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.classList.add("active");
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || "Enlarged preview";
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modalImg.src = "";
+    };
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
 </body>
 </html>
