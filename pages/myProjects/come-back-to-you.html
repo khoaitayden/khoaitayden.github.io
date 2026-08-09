@@ -3,23 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Come back to you — Nguyen Khoa</title>
+  <title>Come Back to You — Nguyen Khoa</title>
   <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
 </head>
 <body>
   <header>
-    <h1>Come back to you</h1>
+    <h1>Come Back to You</h1>
+    <p class="tagline">A 2D platformer game featuring interactive puzzle platforms, tight movement control, and dynamic traps.</p>
+    <p class="tagline">
+      <a href="https://github.com/khoaitayden/Come-back-for-you" target="_blank">💻 GitHub Repo</a>
+    </p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
+    <!-- I. INTRODUCTION & GAMEPLAY -->
     <section>
-      <p>Short description goes here.</p>
+      <h2>I. Introduction &amp; Gameplay</h2>
+      <p>
+        <strong>Come Back to You</strong> is a 2D platformer built in Unity. Players navigate challenging levels featuring moving platforms, buttons, automatic doors, teleporters, and traps like the dirt snake.
+      </p>
+
+      <h3>Gameplay Video</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/iJ3oRvMlt9I" title="Come Back to You Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h3 style="margin-top: 2rem;">Screenshot</h3>
+      <div style="max-width: 640px; margin: 1rem auto;">
+        <img class="card-image" src="../../assets/projects/come-back-to-you/screenshot.png" alt="Come Back to You Gameplay Screenshot" />
+      </div>
     </section>
+
+    <!-- II. TECHNICAL & CODE STRUCTURE -->
+    <section>
+      <h2>II. Technical &amp; Code Structure</h2>
+      <p>
+        Developed in Unity with a clean, component-driven 2D architecture utilizing the new Input System and UI Toolkit.
+      </p>
+
+      <h3>Code Architecture</h3>
+      <ul>
+        <li><strong>Player Mechanics:</strong> <code>PlayerBehavior.cs</code>, <code>PlayerInputHandler.cs</code>, <code>KillerBehavior.cs</code>, and <code>KillerDied.cs</code> control movement, physics interactions, and player state.</li>
+        <li><strong>Platforms &amp; Puzzles:</strong> <code>AutoPlatformX.cs</code>, <code>AutoPlatformY.cs</code>, <code>ButtonAndPlatformX.cs</code>, <code>ButtonAndPlatformY.cs</code>, <code>ButtonDoor.cs</code>, <code>EndDoor.cs</code>, and <code>TeleportButton.cs</code> manage interactive environment logic.</li>
+        <li><strong>Traps &amp; UI:</strong> <code>DirtSnakeMovement.cs</code>, <code>TrapBehavior.cs</code>, <code>MainMenu.cs</code>, <code>PauseMenu.cs</code>, and <code>BackStory.cs</code> handle hazards and game state UI.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity 2D (Universal Render Pipeline)</td></tr>
+        <tr><td><strong>Input &amp; UI</strong></td><td>New Input System, UI Toolkit</td></tr>
+        <tr><td><strong>Physics</strong></td><td>Custom Physics Materials (BodyFiction, Floor)</td></tr>
+      </table>
+    </section>
+
+    <!-- III. ART, AUDIO & CREDITS -->
+    <section>
+      <h2>III. Art, Audio &amp; Credits</h2>
+      
+      <h3>Art Credits</h3>
+      <p>
+        Pixel art created in collaboration with a friend who assisted with select assets (preferring to remain unlinked). Additional art by me via <a href="https://www.pixilart.com/blackpotato/gallery" target="_blank">Pixilart Gallery</a>.
+      </p>
+
+      <h3>Audio Design</h3>
+      <p>
+        Sound effects and music tracks sourced from <a href="https://pixabay.com/sound-effects" target="_blank">Pixabay Sound Effects</a>.
+      </p>
+    </section>
+
   </main>
 
   <footer>
     <p>&copy; 2026 Nguyen Khoa</p>
   </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalClose = document.getElementById("modalClose");
+
+    document.querySelectorAll(".card-image").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.classList.add("active");
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || "Enlarged preview";
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modalImg.src = "";
+    };
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
 </body>
 </html>
