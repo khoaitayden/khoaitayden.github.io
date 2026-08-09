@@ -3,23 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The fallen one — Nguyen Khoa</title>
+  <title>The Fallen One — Nguyen Khoa</title>
   <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
 </head>
 <body>
   <header>
-    <h1>The fallen one</h1>
+    <h1>The Fallen One</h1>
+    <p class="tagline">A personal Unity learning project combining Flappy bird, Ping pong and Tetris block mechanics.</p>
+    <p class="tagline">
+      <a href="https://github.com/khoaitayden/the-fallen-one" target="_blank">GitHub Repo</a> |
+      <a href="https://khoaitayden.itch.io/the-fallen-one" target="_blank"> Itch.io</a>
+    </p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
+    <!-- I. INTRODUCTION & GAMEPLAY -->
     <section>
-      <p>Short description goes here.</p>
+      <h2>I. Introduction &amp; Screenshots</h2>
+      <p>
+        <strong>The Fallen One</strong> is a personal project created to learn and master Unity development. 
+        It blends fast-paced obstacle dodging, creature encounters, multi-phase boss battles, and Tetris-inspired block placement mechanics.
+      </p>
+
+      <h3>Gameplay Screenshots</h3>
+      <div class="asset-grid-3" style="margin-top: 1.5rem;">
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/screenshot-1.png" alt="Gameplay Screenshot 1" />
+          <h4>Flappy bird</h4>
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/screenshot-2.png" alt="Gameplay Screenshot 2" />
+          <h4>Ping pong</h4>
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/screenshot-3.png" alt="Gameplay Screenshot 3" />
+          <h4>Tetris</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- II. TECHNICAL & CODE STRUCTURE -->
+    <section>
+      <h2>II. Technical &amp; Code Structure</h2>
+      <p>
+        Built in Unity with custom object pooling for creatures and obstacles, state-driven level progression, and dynamic audio mixing.
+      </p>
+
+      <h3>Code Architecture</h3>
+      <ul>
+        <li><strong>Player &amp; States:</strong> <code>PlayerBehavior.cs</code>, <code>PlayerBehaviorLv2.cs</code>, <code>PlayerController.cs</code>, <code>Bosstage.cs</code>, <code>State.cs</code>, and <code>StateLv2.cs</code> managing player movement, attacks, and boss stage progression.</li>
+        <li><strong>Obstacles &amp; Pooling:</strong> <code>Creature2.cs</code>, <code>Creature3.cs</code>, <code>Creature4.cs</code>, <code>Creature5.cs</code>, <code>Obstacle.cs</code>, <code>Ball.cs</code>, and object pool managers (`CreateObstacle.cs`, `ConfigObstacle.cs`, `Creature4PoolManager.cs`).</li>
+        <li><strong>Tetris System:</strong> Prefab generation and placement mechanics for Tetris-inspired obstacle grids.</li>
+        <li><strong>Audio Mixer:</strong> <code>MasterMixer.mixer</code> controlling master audio layers, sound effects, and ambient music tracks.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity 2D (Universal Render Pipeline)</td></tr>
+        <tr><td><strong>Architecture</strong></td><td>Custom Object Pooling, State Machines</td></tr>
+        <tr><td><strong>Audio</strong></td><td>Unity Audio Mixer (MasterMixer)</td></tr>
+      </table>
+    </section>
+
+    <!-- III. ART, ASSETS & CREDITS -->
+    <section>
+      <h2>III. Art, Assets &amp; Credits</h2>
+      
+      <h3>Hand-Drawn Assets</h3>
+      <p>Custom pixel art assets, animations, and creature sprites created for the game:</p>
+      
+      <div class="asset-grid-3" style="margin-top: 1.5rem;">
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/hand-art-1.gif" alt="Hand-Drawn GIF 1" />
+          <h4>Player</h4>
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/hand-art-2.gif" alt="Hand-Drawn GIF 2" />
+          <h4>Boss</h4>
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/hand-art-3.gif" alt="Hand-Drawn GIF 3" />
+          <h4>Bird</h4>
+        </div>
+      </div>
+      
+      <div class="asset-grid-3" style="margin-top: 1rem;">
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/hand-art-4.png" alt="Hand-Drawn Asset 4" />
+          <h4>Final boss</h4>
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/hand-art-5.png" alt="Hand-Drawn Asset 5" />
+          <h4>Vine</h4>
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/the-fallen-one/hand-art-6.png" alt="Hand-Drawn Asset 6" />
+          <h4>Tree</h4>
+        </div>
+      </div>
+
+      <p style="margin: 1.5rem 0 1rem 0; font-style: italic; color: #94a3b8;">...and many more unlisted sprites, animations, and background elements v..v</p>
+
+      <h3>External Assets &amp; Music Credits</h3>
+      <ul>
+        <li><strong>Backgrounds:</strong> Sourced from Craftpix.net</li>
+        <li><strong>Sound Effects:</strong> Downloaded from Pixabay Sound Effects</li>
+        <li><strong>"Sinking House"</strong> – Unwritten Stories (<a href="https://breakingcopyright.com" target="_blank">BreakingCopyright</a>, CC BY-SA 3.0)</li>
+        <li><strong>"Fire"</strong> – TheFatRat</li>
+        <li><strong>"Valhalla"</strong> – Vexento</li>
+        <li><strong>"Sad Robot"</strong> – Vexento</li>
+      </ul>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Nguyen Khoa</p>
   </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalClose = document.getElementById("modalClose");
+
+    document.querySelectorAll(".card-image").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.classList.add("active");
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || "Enlarged preview";
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modalImg.src = "";
+    };
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
 </body>
 </html>
