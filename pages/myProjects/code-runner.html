@@ -5,21 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Code Runner — Nguyen Khoa</title>
   <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
 </head>
 <body>
   <header>
     <h1>Code Runner</h1>
+    <p class="tagline">A puzzle programming game where you write and sequence commands to guide characters through grid-based levels.</p>
+    <p class="tagline">
+      <a href="https://github.com/khoaitayden/CodeRunner" target="_blank">GitHub Repo</a> | 
+      <a href="https://khoaitayden.itch.io/code-runner" target="_blank">Itch.io</a>
+    </p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
+    <!-- I. INTRODUCTION -->
     <section>
-      <p>Short description goes here.</p>
+      <h2>I. Introduction</h2>
+      <p>
+        <strong>Code Runner</strong> is a puzzle programming game where players solve grid-based challenges by sequencing movement, action, and loop commands. 
+        Think like a programmer to navigate obstacles, execute algorithms, and beat each level efficiently.
+      </p>
+
+      <h3>Gameplay Video</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/dHlyRWVEJM8" title="Code Runner Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- II. TECHNICAL & CODE STRUCTURE -->
+    <section>
+      <h2>II. Technical &amp; Code Structure</h2>
+      <p>
+        Built in Unity with a modular command-pattern architecture, JSON-based level serialization, and drag-and-drop UI command slots.
+      </p>
+
+      <h3>Code Architecture</h3>
+      <ul>
+        <li><strong>Command Pattern:</strong> <code>Command.cs</code>, <code>CommandSlot.cs</code>, and <code>DraggableCommand.cs</code> handle the drag-and-drop instruction logic and execution queue.</li>
+        <li><strong>Loop &amp; Flow Control:</strong> <code>LoopPanelController.cs</code> manages repeating loops and nested instruction blocks.</li>
+        <li><strong>Board &amp; Player:</strong> <code>BoardManager.cs</code> manages grid tiles and obstacles, while <code>PlayerController.cs</code> executes queued movement instructions.</li>
+        <li><strong>Data &amp; Serialization:</strong> <code>LevelData.cs</code>, <code>CompactLevelData.cs</code>, and JSON level files stored under <code>Assets/Data/Levels/</code>.</li>
+        <li><strong>Audio System:</strong> <code>AudioManager.cs</code>, <code>MusicManager.cs</code>, and <code>SFXManager.cs</code> managing retro 8-bit sound effects and chiptune background music.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity (C#)</td></tr>
+        <tr><td><strong>Architecture</strong></td><td>Command Pattern, JSON Level Serialization</td></tr>
+        <tr><td><strong>Audio</strong></td><td>Unity Audio Mixer, Chiptune / 8-bit SFX</td></tr>
+      </table>
+    </section>
+
+    <!-- III. COLLABORATION & CREDITS -->
+    <section>
+      <h2>III. Collaboration &amp; Credits</h2>
+      <p>
+        Development Credits:
+      </p>
+      <ul>
+        <li><strong>Game Design:</strong> Nguyen Tung An</li>
+      </ul>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Nguyen Khoa</p>
   </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalClose = document.getElementById("modalClose");
+
+    document.querySelectorAll(".card-image").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.classList.add("active");
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || "Enlarged preview";
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modalImg.src = "";
+    };
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
 </body>
 </html>
