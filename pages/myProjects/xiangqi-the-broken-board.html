@@ -3,24 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xiangqi The Broken Board — Nguyen Khoa</title>
+  <title>Xiangqi: The Broken Board — Nguyen Khoa</title>
   <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
 </head>
 <body>
   <header>
-    <h1>Xiangqi The Broken Board</h1>
+    <h1>Xiangqi: The Broken Board</h1>
+    <p class="tagline">A tactical rogue-like Chinese chess game where movement reloads your weapon and shooting kills.</p>
+    <p class="tagline">
+      <a href="https://github.com/khoaitayden/Xiangqi-The-Broken-Board" target="_blank">GitHub Repo</a> | 
+      <a href="https://khoaitayden.itch.io/xiangqi-the-broken-board" target="_blank">Itch.io</a>
+    </p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
+    <!-- I. INTRODUCTION & SHOWCASE -->
     <section>
-      <p>A rogue-like xiangqi board game.</p>
-      <p>https://www.facebook.com/share/p/1931xjFv2t/</p>
+      <h2>I. Introduction &amp; Showcase</h2>
+      <p>
+        <strong>Xiangqi: The Broken Board</strong> is a tactical rogue-like twist on traditional Chinese Chess (Xiangqi). 
+        The core gameplay revolves around a tactical paradox: <strong>Move to Reload vs. Shoot to Kill</strong>. 
+        Every step reloads your ammunition, while firing your weapon clears the board of enemy pieces governed by authentic Xiangqi movement rules.
+      </p>
+
+      <h3>Community Showcase Event</h3>
+      <p>
+        This project was proudly showcased at the FPT Open Day 2026 at the F-Code booth. You can check out the event highlight and community feedback on this <a href="https://www.facebook.com/share/p/1931xjFv2t/" target="_blank">Facebook Showcase Post</a>.
+      </p>
+
+      <!-- 3-Image Event Highlight Section -->
+      <div class="asset-grid-3" style="margin-top: 1.5rem;">
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/xiangqi-the-broken-board/event-1.jpg" alt="Exhibition Setup" />
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/xiangqi-the-broken-board/event-2.jpg" alt="Player Testing" />
+        </div>
+        <div class="asset-box">
+          <img class="card-image" src="../../assets/projects/xiangqi-the-broken-board/event-3.jpg" alt="Community Feedback" />
+        </div>
+      </div>
+
+      <h3>Gameplay Videos</h3>
+
+      <h4 style="margin-top: 1.5rem; color: #ffffff;">1. Core Gameplay Without Roguelike (Pure Xiangqi)</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/d3Eh6y87doA" title="Pure Xiangqi Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h4 style="margin-top: 2rem; color: #ffffff;">2. Finished Product Gameplay (Roguelike Demo)</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/qnW4vnwBJyA" title="Finished Product Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h4 style="margin-top: 2rem; color: #ffffff;">3. First Implement Card System</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/b_yk1GaWLC8" title="First Implement Card System" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- II. TECHNICAL & CODE STRUCTURE -->
+    <section>
+      <h2>II. Technical &amp; Code Structure</h2>
+      <p>
+        Developed in Unity with a modular, grid-based architecture handling turn management, pathfinding, and card drafting.
+      </p>
+
+      <h3>Code Architecture</h3>
+      <ul>
+        <li><strong>Turn &amp; Grid Managers:</strong> <code>TurnManager.cs</code> handles player/enemy turn cycles. <code>GridManager.cs</code>, <code>BoardNode.cs</code>, and <code>BoardState.cs</code> manage the 9x10 grid layout, orthogonal/diagonal node traversal, and river/palace boundaries.</li>
+        <li><strong>Player Controller:</strong> <code>PlayerActionController.cs</code> and <code>PlayerGeneral.cs</code> process 8-directional input, ammo economy (movement reloads), cone/ranged shooting, and corpse interaction.</li>
+        <li><strong>Enemy AI Roster:</strong> Specialized modular scripts for each piece type: <code>EnemyPawn.cs</code>, <code>EnemyHorse.cs</code> (with hobbling rules), <code>EnemyElephant.cs</code>, <code>EnemyCannon.cs</code> (screen logic), <code>EnemyChariot.cs</code>, <code>EnemyAdvisor.cs</code>, and <code>EnemyGeneral.cs</code> (Boss).</li>
+        <li><strong>Roguelike Card System:</strong> <code>DraftManager.cs</code> and <code>CardSO.cs</code> handle floor progression and drafting between Yin and Yang card modifiers.</li>
+        <li><strong>Systems &amp; Persistence:</strong> <code>DataPersistenceManager.cs</code>, <code>LevelManager.cs</code>, <code>RunManager.cs</code>, and <code>ScreenShakeManager.cs</code>.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity (C#)</td></tr>
+        <tr><td><strong>Tweening &amp; UI</strong></td><td>DOTween, TextMeshPro</td></tr>
+        <tr><td><strong>Architecture</strong></td><td>Grid-based Turn System, ScriptableObject Cards</td></tr>
+      </table>
+    </section>
+
+    <!-- III. YIN & YANG CARD SYSTEM -->
+    <section>
+      <h2>III. Yin &amp; Yang Card System</h2>
+      <p>
+        Between floors, players draft cards that alter the rules of engagement. <strong>Yang Cards</strong> empower the player, while <strong>Yin Cards</strong> buff the enemy forces.
+      </p>
+
+      <h3>Yang Cards (Player Buffs &amp; Rule Breakers)</h3>
+      <table class="styled-table">
+        <tr><th>Card Name</th><th>Vietnamese</th><th>Description</th></tr>
+        <tr><td><strong>Gunpowder Gourd</strong></td><td>Bầu Đạn Thuốc Súng</td><td>+1 Max Ammo. You start each floor fully loaded.</td></tr>
+        <tr><td><strong>The Red Hare</strong></td><td>Ngựa Xích Thố</td><td>Moving diagonally now reloads 2 Ammo instead of 1.</td></tr>
+        <tr><td><strong>Jade Talisman</strong></td><td>Ngọc Bội</td><td>Gain 1 Armor at start of floor (absorbs 1 lethal hit).</td></tr>
+        <tr><td><strong>Cloud Step</strong></td><td>Khinh Công</td><td>Your movement ignores Corpses (can step through them).</td></tr>
+        <tr><td><strong>Piercing Dragon</strong></td><td>Xuyên Tâm Thương</td><td>Point-blank shots pierce the first target and damage the enemy behind.</td></tr>
+        <tr><td><strong>The Crouching Tiger</strong></td><td>Ngọa Hổ Tàng Long</td><td>Firing through an adjacent piece acts like a Cannon (infinite range, 3 damage).</td></tr>
+        <tr><td><strong>Mandate of Heaven</strong></td><td>Thiên Mệnh</td><td>"Flying General" Ultimate triggers with 1 blocker instead of an empty file.</td></tr>
+        <tr><td><strong>Art of War</strong></td><td>Tôn Tử Binh Pháp</td><td>Once per floor, if Ammo is 0, your next shot costs 0 Ammo.</td></tr>
+      </table>
+
+      <h3 style="margin-top: 2rem;">Yin Cards (Enemy Buffs &amp; Board Modifiers)</h3>
+      <table class="styled-table">
+        <tr><th>Card Name</th><th>Vietnamese</th><th>Description</th></tr>
+        <tr><td><strong>Conscription</strong></td><td>Lệnh Bắt Lính</td><td>+2 Pawns spawn at the start of every floor.</td></tr>
+        <tr><td><strong>Desperation</strong></td><td>Phá Cung</td><td>Enemy Boss and Advisors can leave the 3x3 Palace.</td></tr>
+        <tr><td><strong>The Vanguard</strong></td><td>Tiên Phong</td><td>+1 Chariot (Xe) spawns at the start of every floor.</td></tr>
+        <tr><td><strong>Artillery Backup</strong></td><td>Pháo Viện</td><td>+1 Cannon (Pháo) spawns at the start of every floor.</td></tr>
+        <tr><td><strong>Imperial Mandate</strong></td><td>Sắc Lệnh</td><td>Advisors grant the General -1 damage intake while alive.</td></tr>
+        <tr><td><strong>Drought</strong></td><td>Hạn Hán</td><td>The Chu-Han River dries up; enemy Elephants can cross.</td></tr>
+        <tr><td><strong>Bloodthirsty Pawns</strong></td><td>Binh Cuồng</td><td>Pawns can move 1 step diagonally forward to capture.</td></tr>
+        <tr><td><strong>Heavy Armor</strong></td><td>Giáp Trụ</td><td>All Elephants gain +2 Max HP.</td></tr>
+      </table>
+    </section>
+
+    <!-- IV. COLLABORATION & CREDITS -->
+    <section>
+      <h2>IV. Collaboration &amp; Credits</h2>
+      <p>
+        Created through a collaborative development effort:
+      </p>
+      <ul>
+        <li><strong>Nguyen Duc Nhat Khang</strong> — Main Artist &amp; Visual Design (<a href="https://www.facebook.com/profile.php?id=61585322999475" target="_blank">Facebook Profile</a>)</li>
+        <li><strong>Nguyen Tung An</strong> — Game Design &amp; Systems (<a href="https://www.facebook.com/tunganne.ok" target="_blank">Facebook Profile</a>)</li>
+      </ul>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Nguyen Khoa</p>
   </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+
+    document.querySelectorAll('.card-image').forEach(img => {
+      img.addEventListener('click', () => {
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || 'Enlarged preview';
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modalImg.src = '';
+    };
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
 </body>
 </html>

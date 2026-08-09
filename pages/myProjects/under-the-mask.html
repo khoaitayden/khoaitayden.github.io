@@ -3,23 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Under the mask — Nguyen Khoa</title>
+  <title>Under the Mask — Nguyen Khoa</title>
   <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
 </head>
 <body>
   <header>
-    <h1>Under the mask</h1>
+    <h1>Under the Mask</h1>
+    <p class="tagline">A narrative-driven game built for Game Jam Vietnam 2026 exploring psychological masks, symptoms, and dialogue.</p>
+    <p class="tagline">
+      <a href="https://khoaitayden.itch.io/under-the-mask" target="_blank">Play on Itch.io</a>
+    </p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
+    <!-- I. INTRODUCTION -->
     <section>
-      <p>Short description goes here.</p>
+      <h2>I. Introduction</h2>
+      <p>
+        <strong>Under the Mask</strong> is a narrative puzzle and dialogue game created during Game Jam Vietnam 2026. 
+        Players interact with patients, analyze symptoms, uncover psychological illnesses, and navigate branching conversations where people hide behind emotional masks.
+      </p>
+
+      <h3>Gameplay Video</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/CRZjUrgw8CU" title="Under the Mask Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- II. TECHNICAL -->
+    <section>
+      <h2>II. Technical</h2>
+      <p>
+        Built in Unity featuring Ink narrative scripting, modular ScriptableObject data layers, UI event setups, gameplay/dialogue design, and custom wire sound design.
+      </p>
+
+      <h3>Core Systems &amp; Contributions</h3>
+      <ul>
+        <li><strong>Narrative &amp; Dialogue:</strong> Integrated <strong>Ink</strong> dialogue scripting engine (`Bang.ink`, `Thuan.ink`, `Trinh.ink`) for branching conversations. Dialogue flow and gameplay mechanics co-designed alongside Nguyen Tung An.</li>
+        <li><strong>Data Architecture:</strong> Modular ScriptableObject architecture managing <code>Illness</code>, <code>Patient</code>, and <code>Symptom</code> data structures across Data and Controller layers.</li>
+        <li><strong>UI &amp; Event Setup:</strong> Custom UI layout, screen interactions, and game event triggers using DOTween and TextMeshPro.</li>
+        <li><strong>Sound Design:</strong> Atmospheric wire sound design and audio mixing.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity (C#)</td></tr>
+        <tr><td><strong>Narrative</strong></td><td>Ink Integration</td></tr>
+        <tr><td><strong>UI &amp; Polish</strong></td><td>DOTween, TextMeshPro</td></tr>
+      </table>
+    </section>
+
+    <!-- III. COLLABORATION & CREDITS -->
+    <section>
+      <h2>III. Collaboration &amp; Credits</h2>
+      <p>
+        Developed by the team for Game Jam Vietnam 2026:
+      </p>
+      <ul>
+        <li><strong>Developer:</strong> Nguyen Quoc Huy (<a href="https://github.com/quochuybb" target="_blank">GitHub</a>)</li>
+        <li><strong>Artist:</strong> Nguyen Duc Nhat Khang (<a href="https://www.facebook.com/profile.php?id=61585322999475" target="_blank">Facebook Profile</a>)</li>
+        <li><strong>Game Design:</strong> Nguyen Tung An (<a href="https://www.facebook.com/tunganne.ok" target="_blank">Facebook Profile</a>)</li>
+      </ul>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Nguyen Khoa</p>
   </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+
+    document.querySelectorAll('.card-image').forEach(img => {
+      img.addEventListener('click', () => {
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || 'Enlarged preview';
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modalImg.src = '';
+    };
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
 </body>
 </html>
