@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horses ML Agent — Nguyen Khoa</title>
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
+</head>
+<body>
+  <header>
+    <h1>Horses ML Agent</h1>
+    <p class="tagline">A Unity ML-Agents reinforcement learning project training autonomous horses to race and navigate tracks.</p>
+    <a href="https://github.com/khoaitayden/HorsesMLAgent" target="_blank">GitHub Repo</a>
+    <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
+  </header>
+
+  <main>
+    <!-- I. INTRODUCTION & VIDEOS -->
+    <section>
+      <h2>I. Introduction &amp; Videos</h2>
+      <p>
+        <strong>Horses ML Agent</strong> is an artificial intelligence and reinforcement learning project built in Unity using the ML-Agents framework. 
+        The project trains autonomous horse agents to master racing tracks, hit checkpoints efficiently, and optimize movement policies through reward-based training.
+      </p>
+
+      <h3>Project Videos</h3>
+
+      <h4 style="margin-top: 1.5rem; color: #ffffff;">1. Training Video (ML-Agents Training Session)</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tkI7hCJ8NW8" title="Horse ML-Agent Training" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h4 style="margin-top: 2rem; color: #ffffff;">2. Test Model Video (Inference &amp; ONNX Evaluation)</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/SW_PaGUoOO8" title="Horse ML-Agent Model Test" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- II. TECHNICAL & CODE STRUCTURE -->
+    <section>
+      <h2>II. Technical &amp; Code Structure</h2>
+      <p>
+        Developed using Unity ML-Agents, custom reward functions, and ONNX neural network model integration.
+      </p>
+
+      <h3>Code Architecture</h3>
+      <ul>
+        <li><strong>ML-Agent Behavior:</strong> <code>HorseAgent.cs</code> inherits from <code>Agent</code>, defining observation spaces, discrete/continuous actions, and reward shaping functions for tracking and checkpoint navigation.</li>
+        <li><strong>Race Management:</strong> <code>RaceManager.cs</code> controls race logic, start/finish lines, checkpoint validation, timer systems, and episode resets.</li>
+        <li><strong>Trained Models:</strong> Multiple generations of ONNX reinforcement learning models (`AIModel/`) trained across iterative training sessions and hyperparameters.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity (Universal Render Pipeline)</td></tr>
+        <tr><td><strong>AI Framework</strong></td><td>Unity ML-Agents Toolkit, ONNX Runtime</td></tr>
+        <tr><td><strong>Language</strong></td><td>C# (Unity), Python (ML-Agents Training)</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Nguyen Khoa</p>
+  </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalClose = document.getElementById("modalClose");
+
+    document.querySelectorAll(".card-image").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.classList.add("active");
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || "Enlarged preview";
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modalImg.src = "";
+    };
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+</body>
+</html>
