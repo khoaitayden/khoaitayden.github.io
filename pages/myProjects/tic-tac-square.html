@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Square — Nguyen Khoa</title>
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../components/card.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
+</head>
+<body>
+  <header>
+    <h1>Tic Tac Square</h1>
+    <p class="tagline">A tic-tac-toe(+) game where the board keeps growing — from a classic 3×3 up to 15×15, then into 3D — with perks, drafting, and online first-to-5 matches.</p>
+    <p class="tagline">
+      <a href="https://khoaitayden.itch.io/tic-tac-square" target="_blank">Itch.io</a>
+    </p>
+    <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
+  </header>
+
+  <main>
+    <!-- I. INTRODUCTION & SHOWCASE -->
+    <section>
+      <h2>I. Introduction &amp; Showcase</h2>
+      <p>
+        <strong>Tic Tac Square</strong> is a tic-tac-toe with power up (Perk).
+      </p>
+      <p>
+        The game runs in two modes. <strong>PVE</strong> is a run-based campaign against an AI opponent:
+        win to process level, draw to stay and lose will decrease level.
+        <strong>PVP</strong> is local or networked play, first to 5 round wins, with host-configurable
+        turn, highlight and draft timers, a two-press rematch, and a Firebase leaderboard that scores the run.
+      </p>
+
+      <h3>Gameplay Video</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/-ydKAT3wggg" title="Tic Tac Square Multiplayer Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- II. GAME SYSTEMS -->
+    <section>
+      <h2>II. Game Systems</h2>
+
+      <h3>1. The Board Ladder</h3>
+      <p>
+         levels from a normal 3×3 opening to wide rectangles,
+        dense grids, and finally full 3D boards.
+      </p>
+      <table class="styled-table">
+        <tr><th>Level</th><th>Board</th><th>Connect to Win</th></tr>
+        <tr><td><strong>1</strong></td><td>3 × 3</td><td>3</td></tr>
+        <tr><td><strong>2</strong></td><td>4 × 4</td><td>4</td></tr>
+        <tr><td><strong>3</strong></td><td>8 × 4 (rectangle)</td><td>4</td></tr>
+        <tr><td><strong>4</strong></td><td>4 × 8 (rectangle)</td><td>4</td></tr>
+        <tr><td><strong>5</strong></td><td>5 × 5</td><td>5</td></tr>
+        <tr><td><strong>6</strong></td><td>7 × 7</td><td>5</td></tr>
+        <tr><td><strong>7</strong></td><td>8 × 8</td><td>5</td></tr>
+        <tr><td><strong>8</strong></td><td>15 × 15</td><td>5</td></tr>
+        <tr><td><strong>9</strong></td><td>3 × 3 × 3 (3D)</td><td>3</td></tr>
+        <tr><td><strong>10</strong></td><td>5 × 5 × 5 (3D)</td><td>5</td></tr>
+      </table>
+
+      <h3 style="margin-top: 2rem;">2. Power Perks (12)</h3>
+      <p>
+        Perks are drafted between rounds and change the board.
+      </p>
+      <table class="styled-table">
+        <tr><th>Perk</th><th>Effect</th></tr>
+        <tr><td><strong>Ghost Mark</strong></td><td>Place your mark on an empty cell and a ghost on an adjacent cell. The ghost becomes a solid mark on your next turn.</td></tr>
+        <tr><td><strong>Horizontal Side</strong></td><td>Place your mark, then choose 1 adjacent cell left or right for your 2nd mark.</td></tr>
+        <tr><td><strong>Vertical Side</strong></td><td>Place your mark, then choose 1 adjacent cell above or below for your 2nd mark.</td></tr>
+        <tr><td><strong>Diagonal Side</strong></td><td>Place your mark, then choose 1 adjacent diagonal cell for your 2nd mark.</td></tr>
+        <tr><td><strong>Block</strong></td><td>Place your mark on an empty cell and a neutral block on any empty cell. Neither side can connect through it.</td></tr>
+        <tr><td><strong>Override</strong></td><td>Place a solid mark directly over any existing piece (even opponent).</td></tr>
+        <tr><td><strong>Chaos One</strong></td><td>Place a mark, random mark placed around it in 1×1 radius.</td></tr>
+        <tr><td><strong>Chaos Horizontal</strong></td><td>Place a mark, then a random mark appears anywhere in the same row.</td></tr>
+        <tr><td><strong>Chaos Vertical</strong></td><td>Place a mark, then a random mark appears anywhere in the same column.</td></tr>
+        <tr><td><strong>Chaos Diagonal</strong></td><td>Place a mark, then a random mark appears anywhere on either diagonal.</td></tr>
+        <tr><td><strong>True Chaos</strong></td><td>Place your mark, then a random mark appears in an empty cell.</td></tr>
+        <tr><td><strong>Chaos Ghost</strong></td><td>Place your mark, then a random ghost mark appears in an empty cell.</td></tr>
+      </table>
+
+      <h3 style="margin-top: 2rem;">3. Match Rules</h3>
+      <ul>
+        <li><strong>PVE:</strong> Infinite turn time and the AI never receives perks. A win advances you to the next board with no perk offered, a draw keeps you on the level and offers a perk every time, and a loss offers a perk and pushes the run back.</li>
+        <li><strong>PVP:</strong> Local or networked, first to <strong>5</strong> round wins (configurable 1–10). After each round the winner drafts the next map, the loser drafts a perk (1 of 3), and a draw gives both a perk. Rematch needs both players to press the button.</li>
+        <li><strong>Host-only match settings:</strong> Turn timer 0–60s (default 30s, can be Off), highlight timer 0–30s (default 15s), draft timer 0–30s (default 20s) — the guest's copy reads the rules as the host steps them.</li>
+        <li><strong>Online rooms:</strong> Lobbies, waiting room, state sync and rematch run over PurrNet Relay &amp; Lobby, so both peers always agree on the round result and score.</li>
+      </ul>
+    </section>
+
+    <!-- III. TECHNICAL & CODE STRUCTURE -->
+    <section>
+      <h2>III. Technical &amp; Code Structure</h2>
+      <h3>Tech Stack</h3>
+      <table class="styled-table">
+        <tr><th>Category</th><th>Technology</th></tr>
+        <tr><td><strong>Engine</strong></td><td>Unity 6000.5 (Universal Render Pipeline)</td></tr>
+        <tr><td><strong>Language</strong></td><td>C#</td></tr>
+        <tr><td><strong>Multiplayer</strong></td><td>PurrNet (Relay, Lobby, RPC state sync)</td></tr>
+        <tr><td><strong>Backend</strong></td><td>Firebase (Auth, Realtime Database leaderboard, Analytics)</td></tr>
+        <tr><td><strong>Input</strong></td><td>Unity Input System</td></tr>
+        <tr><td><strong>Data</strong></td><td>ScriptableObjects for levels &amp; perks</td></tr>
+      </table>
+    </section>
+
+    <!-- IV. COLLABORATION & CREDITS -->
+    <section>
+      <h2>IV. Collaboration &amp; Credits</h2>
+      <p>
+        Made by <strong>Nguyen Khoa</strong>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Nguyen Khoa</p>
+  </footer>
+
+  <!-- Image Modal Component -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img id="modalImg" class="modal-image" src="" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalClose = document.getElementById("modalClose");
+
+    document.querySelectorAll(".card-image").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.classList.add("active");
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || "Enlarged preview";
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modalImg.src = "";
+    };
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+</body>
+</html>
