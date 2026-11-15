@@ -11,26 +11,22 @@
 <body>
   <header>
     <h1>SerpentGene</h1>
-    <p class="tagline">A Slither.io-style arena snake game pushed into roguelike territory — draft perks, stack status effects, fight AI snakes with their own personalities, and outlast a closing battlefield.</p>
-    <a href="https://github.com/khoaitayden/unity-build-grow-fish-docker" target="_blank">WebBuild</a>
+    <p class="tagline">A Slither.io-style arena snake game with roguelike perks, status effects and a Battle Royale mode.</p>
     <p class="tagline"><a href="../myProjects.html">&larr; Back to all projects</a></p>
   </header>
 
   <main>
-    <!-- I. INTRODUCTION & SHOWCASE -->
+    <!-- I. INTRODUCTION -->
     <section>
-      <h2>I. Introduction &amp; Showcase</h2>
+      <h2>I. Introduction</h2>
       <p>
-        <strong>SerpentGene</strong> takes the classic grow-your-snake arena formula and layers a perk-driven
-        progression system on top of it. Eating food and defeating enemies grows your body, and every
-        growth step is a chance to draft a new perk that reshapes how you play — weapons, status effects,
-        auras, and passive buffs that stack across your body segments.
+        <strong>SerpentGene</strong> takes the grow-your-snake arena formula and adds a perk-driven
+        progression system. Eating food and defeating enemies grows your body, and each growth step
+        lets you draft a perk — weapons, status effects and auras that stack across your segments.
       </p>
       <p>
-        Alongside you roam AI-controlled snakes with distinct personalities, each choosing its own path:
-        gathering food, hunting clusters, scavenging corpses, fleeing threats, or setting traps. A dedicated
-        <strong>Battle Royale</strong> mode turns the arena into a survival match where straying outside the
-        border starts hurting you, and the pressure keeps climbing.
+        The arena is filled with AI snakes that each play differently, and a Battle Royale mode where
+        straying outside the border hurts you.
       </p>
 
       <h3>Gameplay Video</h3>
@@ -39,87 +35,42 @@
       </div>
     </section>
 
-    <!-- II. GAME SYSTEMS -->
+    <!-- II. FEATURES -->
     <section>
-      <h2>II. Game Systems</h2>
-
-      <h3>1. Game Modes</h3>
-      <table class="styled-table">
-        <tr><th>Mode</th><th>Description</th></tr>
-        <tr><td><strong>Sandbox / PvE</strong></td><td>Open arena play against AI snakes, focused on growing, drafting perks and experimenting with builds.</td></tr>
-        <tr><td><strong>Battle Royale</strong></td><td>Survival match with a shrinking threat zone. Leaving the border deals escalating damage, so staying inside the arena is part of the fight.</td></tr>
-      </table>
-
-      <h3 style="margin-top: 2rem;">2. Perks &amp; Gacha</h3>
-      <p>
-        Perks are offered through a gacha-style draft as you grow. Each perk has a rarity and can be applied
-        at the body-segment level, so a single perk choice can compound across the whole snake.
-      </p>
-      <table class="styled-table">
-        <tr><th>System</th><th>Detail</th></tr>
-        <tr><td><strong>Rarity</strong></td><td>Perks roll at different rarities, which scales their strength.</td></tr>
-        <tr><td><strong>Body-segment multipliers</strong></td><td>Perks and auras scale with the number of body segments carrying them.</td></tr>
-        <tr><td><strong>Weapons / projectiles</strong></td><td>Perks can grant projectiles with perks of their own, including stacking, chain and boomerang behaviours.</td></tr>
-        <tr><td><strong>Status effects</strong></td><td>Burn, poison, ice-slow and regen, with DOT (damage over time) and self-applied buff variants.</td></tr>
-        <tr><td><strong>Auras</strong></td><td>Area effects applied around the snake, including healing and damage-over-time auras.</td></tr>
-      </table>
-
-      <h3 style="margin-top: 2rem;">3. NPC Snakes</h3>
-      <p>
-        AI snakes run a behaviour-based brain with a configurable personality, so different snakes value
-        different things in the arena.
-      </p>
+      <h2>II. Features</h2>
       <ul>
-        <li><strong>Gather &amp; Explore:</strong> Locate food hotspots and clusters, and roam the map efficiently.</li>
-        <li><strong>Boost:</strong> Spend stamina to chase or reposition when it pays off.</li>
-        <li><strong>Flee &amp; Trap:</strong> Detect nearby threats and either escape or bait an opponent.</li>
-        <li><strong>Corpse scavenging:</strong> Rush to dropped food after a kill to grow quickly.</li>
-      </ul>
-
-      <h3 style="margin-top: 2rem;">4. Mobile Controls</h3>
-      <ul>
-        <li>On-screen joystick for steering, plus a dedicated boost button.</li>
-        <li>Safe-area handling so the HUD fits notched phones.</li>
-        <li>Touch-friendly menus and in-game panels.</li>
+        <li><strong>Perks &amp; gacha:</strong> Draft perks by rarity as you grow; they scale with your body segments.</li>
+        <li><strong>Combat:</strong> Projectile weapons, chain and boomerang behaviours, and burn / poison / slow / regen status effects.</li>
+        <li><strong>AI snakes:</strong> Behaviour-based NPCs with personalities — gather, hunt, scavenge, flee or trap.</li>
+        <li><strong>Battle Royale:</strong> A survival mode with out-of-border damage.</li>
+        <li><strong>Mobile:</strong> Touch joystick, boost button and safe-area HUD.</li>
       </ul>
     </section>
 
-    <!-- III. TECHNICAL & CODE STRUCTURE -->
+    <!-- III. TECHNICAL -->
     <section>
-      <h2>III. Technical &amp; Code Structure</h2>
-      <h3>Tech Stack</h3>
+      <h2>III. Technical</h2>
       <table class="styled-table">
         <tr><th>Category</th><th>Technology</th></tr>
         <tr><td><strong>Engine</strong></td><td>Unity 6 (Universal Render Pipeline)</td></tr>
         <tr><td><strong>Language</strong></td><td>C#</td></tr>
         <tr><td><strong>UI</strong></td><td>UI Toolkit (UXML / USS)</td></tr>
-        <tr><td><strong>Input</strong></td><td>Unity Input System (desktop + mobile touch)</td></tr>
-        <tr><td><strong>Data</strong></td><td>ScriptableObjects for perks, status effects, NPC configs and skins</td></tr>
-        <tr><td><strong>Performance</strong></td><td>Object pooling for food, projectiles and VFX</td></tr>
-        <tr><td><strong>Save</strong></td><td>JSON-based player save/load system</td></tr>
+        <tr><td><strong>Input</strong></td><td>Unity Input System (desktop + mobile)</td></tr>
+        <tr><td><strong>Data</strong></td><td>ScriptableObjects for perks, status effects and NPC configs</td></tr>
       </table>
-
-      <h3>Code Architecture</h3>
-      <ul>
-        <li><strong>Perk pipeline:</strong> A unified damage pipeline applies perks, status effects and hit effects on a single hit path.</li>
-        <li><strong>NPC brain:</strong> Behaviours (Gather, Explore, Boost, Flee, Cross, Trap) are selected by a brain that reads a configurable personality and sensory data.</li>
-        <li><strong>Game modes:</strong> Mode managers sit on top of the shared arena systems, so Battle Royale reuses the same spawn, NPC and combat code with mode-specific rules.</li>
-      </ul>
     </section>
 
-    <!-- IV. COLLABORATION & CREDITS -->
+    <!-- IV. CREDITS -->
     <section>
-      <h2>IV. Collaboration &amp; Credits</h2>
-      <p>
-        A 5-person team project. My contributions focused on:
-      </p>
+      <h2>IV. Credits</h2>
+      <p>A 5-person team project. My contributions:</p>
       <ul>
-        <li><strong>NPC AI:</strong> Behaviour system (Gather, Explore, Boost, Flee, Trap, Cross), personality configs, sensory and cluster detection, corpse scavenging.</li>
-        <li><strong>Battle Royale mode:</strong> Mode manager, HUD, and out-of-border damage amplification.</li>
-        <li><strong>Perk &amp; gacha foundation:</strong> Perk generation, rarity, body-segment multipliers, status effects (burn, poison, ice-slow, regen) and stacking.</li>
-        <li><strong>Combat:</strong> Projectiles, target selection, auras, chain and hit effects.</li>
-        <li><strong>Mobile port:</strong> Touch input, mobile HUD and boost button, safe-area handling.</li>
-        <li><strong>Systems &amp; world:</strong> JSON save system, world-border mechanics, seamless camera, spawn safety and kill rewards.</li>
+        <li>NPC AI (behaviours, personalities, senses).</li>
+        <li>Battle Royale mode (manager, HUD, border damage).</li>
+        <li>Perk &amp; gacha system, status effects and stacking.</li>
+        <li>Combat (projectiles, auras, hit effects).</li>
+        <li>Mobile port (touch input, HUD, safe area).</li>
+        <li>JSON save system and world-border mechanics.</li>
       </ul>
     </section>
   </main>
